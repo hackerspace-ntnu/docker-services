@@ -2,7 +2,7 @@ version: '2'
 services:
   database:
     restart: always
-    image: postgres
+    image: postgres:9.4
     env_file: .env
     volumes_from:
       - data
@@ -34,3 +34,12 @@ services:
       - website
     links:
       - website:website
+  backupjob:
+    build: ./backupjob
+    volumes:
+      - ./backup_hs:/etc/ssl/private/backup/hsbackup
+    volumes_from:
+      - website
+    env_file: .env
+    links:
+      - database:database
