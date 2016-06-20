@@ -30,6 +30,7 @@ services:
     volumes:
       - /www/static
       - /etc/localtime:/etc/localtime:ro
+      - /etc/letsencrypt/live
     volumes_from:
       - website
     links:
