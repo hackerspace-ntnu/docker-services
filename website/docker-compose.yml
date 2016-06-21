@@ -26,11 +26,10 @@ services:
   proxy:
     build: ./nginx
     ports:
-      - "80:80"
+      - "1337:80"
     volumes:
       - /www/static
       - /etc/localtime:/etc/localtime:ro
-      - /etc/letsencrypt/live
     volumes_from:
       - website
     links:

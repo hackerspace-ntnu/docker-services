@@ -7,7 +7,7 @@ then
     cd /tmp/backup
     zip -r $NOW/media.zip /code/media/
     /usr/bin/pg_dump $POSTGRES_USER -h database > $NOW/backup.sql 2>> /var/log/syslog
-    scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /etc/ssl/private/backup/hsbackup $NOW hsbackup@95.85.5.38:/home/hsbackup/weekly
+    scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /etc/ssl/private/backup/hsbackup $NOW $BACKUPUSER@$BACKUPHOST:/home/hsbackup/weekly
     rm -r $NOW
     echo "$(date +'%m.%d.%Y') Weekly backup succeded" >> /var/log/backup.log
 else
