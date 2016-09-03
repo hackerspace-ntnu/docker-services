@@ -4,12 +4,15 @@ server {
     server_name www.potet.hackerspace-ntnu.no potet.hackerspace-ntnu.no;
     charset utf-8;
 
+    client_max_body_size 10M;
+
     location /static {
         alias /code/static;
     }
     location /media {
         alias /code/media;
     }
+
 
     location / {
         proxy_pass http://website:8000;
