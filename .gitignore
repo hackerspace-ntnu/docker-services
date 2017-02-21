@@ -1,1 +1,11 @@
+*DS_Store
+*.swp
+*.save
+*.saved
+.idea/
+*.sqlite3
+*.pyc
 *.env
+media/*
+
+
