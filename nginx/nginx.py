@@ -1,3 +1,5 @@
+import sys
+
 server_name = "{}.hackerspace-ntnu.no www.{}.hackerspace-ntnu.no {}.idi.ntnu.no www.{}.idi.ntnu.no;"
 TEMPLATE_PATH = './templates/site'
 
@@ -16,4 +18,4 @@ def generate_nginx_config(subdomain):
 
 
 if __name__ == '__main__':
-    generate_nginx_config("test1")
+    generate_nginx_config(sys.argv[1])
