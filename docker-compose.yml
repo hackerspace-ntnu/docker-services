@@ -1,28 +1,30 @@
 version: '3'
 services:
+
   database:
     image: postgres:9.4
     env_file: .env
     volumes:
-      - /etc/postgresql
-      - /var/log/postgresql
-      - /var/lib/postgresql
+      - db-logs:/var/log/postgresql
+      - db-data:/var/lib/postgresql/data
 
   website:
-    build: ./website
+    build: ./django
+    env_file: .env
     volumes:
-      - ./website:/code
+      - ../website:/code/website
     depends_on:
       - database
-    env_file: .env
+    command: /home/dev/venv/bin/gunicorn --access-logfile - --workers 1 --bind unix:/home/dev/makerbox/makerbox/makerbox.sock makesbox.wsgi:application
     expose:
       - "8000"
+
   proxy:
     build: ./nginx
     ports:
       - "1337:80"
     volumes:
-      - /www/static
+      - static:/www/static
       - /etc/localtime:/etc/localtime:ro
     volumes_from:
       - website
@@ -30,3 +32,8 @@ services:
       - website
     links:
       - website
+
+  volumes:
+    dbdata:
+    dblog:
+    static:
