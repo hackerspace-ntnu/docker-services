@@ -6,7 +6,7 @@ def generate_docker_compose(name):
         content = f.read()
         content = content % (name, name, name)
 
-    with open('docker-services/docker-compose.yml', 'w') as f:
+    with open('docker-compose.yml', 'w') as f:
         f.write(content)
 
 
