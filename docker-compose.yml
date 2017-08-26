@@ -1,4 +1,4 @@
-version: '3'
+version: "3" 
 services:
 
   database:
@@ -9,13 +9,13 @@ services:
       - db-data:/var/lib/postgresql/data
 
   website:
-    build: ./django
+    build: .
     env_file: .env
     volumes:
-      - ../website:/code/website
+      - ./website:/code/website
     depends_on:
       - database
-    command: /home/dev/venv/bin/gunicorn --access-logfile - --workers 1 --bind unix:/home/dev/makerbox/makerbox/makerbox.sock makesbox.wsgi:application
+    command: python manage.py runserver 0.0.0.0:8000
     expose:
       - "8000"
 
@@ -26,14 +26,12 @@ services:
     volumes:
       - static:/www/static
       - /etc/localtime:/etc/localtime:ro
-    volumes_from:
-      - website
     depends_on:
       - website
     links:
       - website
 
-  volumes:
-    dbdata:
-    dblog:
-    static:
+volumes:
+  db-data:
+  db-logs:
+  static:

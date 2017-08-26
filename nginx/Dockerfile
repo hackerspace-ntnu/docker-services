@@ -12,4 +12,4 @@ COPY sites-enabled/* /etc/nginx/conf.d/
 
 # Create folder for certs, and copy certs from server into container
 RUN mkdir certs
-COPY /etc/ssl/certs/dhparam.pem /certs/dhparam.pem
+# COPY /etc/ssl/certs/dhparam.pem /certs/dhparam.pem
