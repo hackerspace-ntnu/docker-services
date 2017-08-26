@@ -2,6 +2,7 @@ version: "3"
 services:
 
   database:
+    container_name: %s_database
     image: postgres:9.4
     env_file: .env
     volumes:
@@ -9,6 +10,7 @@ services:
       - db-data:/var/lib/postgresql/data
 
   website:
+    container_name: %s_website
     build: .
     env_file: .env
     volumes:
@@ -20,6 +22,7 @@ services:
       - "8000:8000"
 
   proxy:
+    container_name: %s_proxy
     build: ./nginx
     ports:
       - "1337:80"
