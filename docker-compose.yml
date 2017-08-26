@@ -1,32 +1,37 @@
-version: '3'
+version: "3" 
 services:
+
   database:
     image: postgres:9.4
     env_file: .env
     volumes:
-      - /etc/postgresql
-      - /var/log/postgresql
-      - /var/lib/postgresql
+      - db-logs:/var/log/postgresql
+      - db-data:/var/lib/postgresql/data
 
   website:
-    build: ./website
+    build: .
+    env_file: .env
     volumes:
-      - ./website:/code
+      - ./website:/code/website
     depends_on:
       - database
-    env_file: .env
-    expose:
-      - "8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+
   proxy:
     build: ./nginx
     ports:
       - "1337:80"
     volumes:
-      - /www/static
+      - static:/www/static
       - /etc/localtime:/etc/localtime:ro
-    volumes_from:
-      - website
     depends_on:
       - website
     links:
       - website
+
+volumes:
+  db-data:
+  db-logs:
+  static:

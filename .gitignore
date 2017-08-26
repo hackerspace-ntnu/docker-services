@@ -7,5 +7,5 @@
 *.pyc
 *.env
 media/*
-
+website/*
 
