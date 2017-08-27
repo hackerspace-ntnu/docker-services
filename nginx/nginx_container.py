@@ -13,7 +13,7 @@ def generate_nginx_config(server_name, domain, subdomain, port):
     """
     with open(join(ROOT_PATH, TEMPLATE_PATH), 'r') as file:
         config = file.read()
-        final_config = config % {'server_name': server_name.replace('__', ' '), 'port': port, 'domain': domain}
+        final_config = config % {'server_name': server_name.replace('__', ' '), 'port': port, 'domain': domain, 'subdomain': subdomain}
 
         with open(DESTINATION_PATH % {'subdomain': subdomain}, 'w') as config_file:
             config_file.write(final_config)
