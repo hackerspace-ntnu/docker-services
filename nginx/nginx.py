@@ -1,7 +1,7 @@
 from os.path import join, split
 import sys
 
-server_name = "{}.hackerspace-ntnu.no www.{}.hackerspace-ntnu.no {}.idi.ntnu.no www.{}.idi.ntnu.no;"
+server_name = "{}.hackerspace-ntnu.no www.{}.hackerspace-ntnu.no {}.idi.ntnu.no www.{}.idi.ntnu.no"
 
 TEMPLATE_PATH = './templates/outer_site_config'
 DESTINATION_PATH = '/etc/nginx/sites-enabled/%(subdomain)s'
