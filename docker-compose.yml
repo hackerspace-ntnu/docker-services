@@ -19,13 +19,13 @@ services:
       - database
     command: python manage.py runserver 0.0.0.0:8000
     ports:
-      - "8000:8000"
+      - "%(website_port)s:8000"
 
   proxy:
     container_name: %(subdomain)s_proxy
     build: ./nginx
     ports:
-      - "%(port)s:80"
+      - "%(proxy_port)s:80"
     volumes:
       - static:/www/static
       - /etc/localtime:/etc/localtime:ro
