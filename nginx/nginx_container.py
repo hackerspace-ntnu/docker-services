@@ -2,7 +2,7 @@ from os.path import join, split
 import sys
 
 TEMPLATE_PATH = './templates/outer_container.conf'
-DESTINATION_PATH = '/etc/nginx/sites-enabled/%(subdomain)s'
+DESTINATION_PATH = '/etc/nginx/sites-enabled/container_%(subdomain)s.conf'
 
 ROOT_PATH = split(__file__)[0]
 
