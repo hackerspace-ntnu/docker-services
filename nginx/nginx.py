@@ -3,7 +3,9 @@ import sys
 
 server_name = "{}.hackerspace-ntnu.no www.{}.hackerspace-ntnu.no {}.idi.ntnu.no www.{}.idi.ntnu.no"
 
-TEMPLATE_PATH = './templates/outer_site_config'
+DOMAIN = "hackerspace-ntnu.no"
+
+TEMPLATE_PATH = './templates/outer.conf'
 DESTINATION_PATH = '/etc/nginx/sites-enabled/%(subdomain)s'
 
 ROOT_PATH = split(__file__)[0]
@@ -16,7 +18,7 @@ def generate_nginx_config(subdomain, port):
     server_name_str = server_name.format(*[subdomain] * 4)
     with open(join(ROOT_PATH, TEMPLATE_PATH)) as file:
         config = file.read()
-        final_config = config % {'server_name': server_name_str, 'port': port}
+        final_config = config % {'server_name': server_name_str, 'port': port, 'domain': DOMAIN}
 
         with open(DESTINATION_PATH % {'subdomain': subdomain}, 'w') as config_file:
             config_file.write(final_config)
