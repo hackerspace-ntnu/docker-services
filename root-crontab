@@ -1,0 +1,1 @@
+0 12 * * * python /devops/backup/dumpall.py && rdiff-backup /devops/backup/database_dumps /devops/backup/daily
